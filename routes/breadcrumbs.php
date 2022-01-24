@@ -61,3 +61,19 @@ Breadcrumbs::for('edit_role', function (BreadcrumbTrail $trail, $role) {
     $trail->push("Edit : {$role->name}", route('roles.edit', $role));
 });
 
+// Home > Customers
+Breadcrumbs::for('customers', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Customer', route('customers.index'));
+});
+// Home > Customers > [Create]
+Breadcrumbs::for('create_customer', function (BreadcrumbTrail $trail) {
+    $trail->parent('customers');
+    $trail->push('Buat Pelanggan', route('customers.create'));
+});
+// Home > Customers > [Edit]
+Breadcrumbs::for('edit_customer', function (BreadcrumbTrail $trail, $customer) {
+    $trail->parent('customers');
+    $trail->push("Edit : {$customer->name}", route('customers.edit', $customer));
+});
+

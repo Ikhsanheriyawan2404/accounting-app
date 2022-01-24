@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
@@ -18,4 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::resources(['users' => UserController::class]);
     Route::resources(['items' => ItemController::class]);
     Route::resources(['roles' => RoleController::class]);
+    Route::resources(['customers' => CustomerController::class]);
+    Route::post('city', [CustomerController::class, 'getCities'])->name('get_cities');
+    Route::post('district', [CustomerController::class, 'getDistricts'])->name('get_districts');
+    Route::post('village', [CustomerController::class, 'getVillages'])->name('get_villages');
 });

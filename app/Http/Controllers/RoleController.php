@@ -49,8 +49,7 @@ class RoleController extends Controller
         $role->syncPermissions(request('permission'));
 
         toast('Data role berhasil ditambahkan!','success');
-        return redirect()->route('roles.index')
-                        ->with('success','Role created successfully');
+        return redirect()->route('roles.index');
     }
 
     public function edit(Role $role)
@@ -73,8 +72,7 @@ class RoleController extends Controller
         $role->syncPermissions(request('permission'));
 
         toast('Data role berhasil diedit!','success');
-        return redirect()->route('roles.index')
-                        ->with('success','Role created successfully');
+        return redirect()->route('roles.index');
     }
 
     public function destroy(Role $role)

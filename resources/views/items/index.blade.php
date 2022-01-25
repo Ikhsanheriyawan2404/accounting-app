@@ -45,10 +45,10 @@
                 <thead class="table-dark">
                     <tr>
                         <th style="width: 1%">No.</th>
-                        <th>Nama Barang</th>
+                        <th>Nama</th>
                         <th>Harga</th>
                         <th>Kuantitas</th>
-                        <th>Deskripsi</th>
+                        {{-- <th>Deskripsi</th> --}}
                         <th class="text-center" style="width: 15%"><i class="fas fa-cogs"></i></th>
                     </tr>
                 </thead>
@@ -154,7 +154,7 @@
                     {data: 'name', name: 'name'},
                     {data: 'price', name: 'price'},
                     {data: 'quantity', name: 'quantity'},
-                    {data: 'description', name: 'description'},
+                    // {data: 'description', name: 'description'},
                     {data: 'action', name: 'action', orderable: true, searchable: true},
                 ]
             });

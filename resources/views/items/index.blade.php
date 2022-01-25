@@ -96,10 +96,14 @@
                 </button>
             </div>
             <div>
-                <input type="hidden" name="post_id" id="post_id">
+                <input type="hidden" name="item_id" id="item_id">
                 <div class="modal-body">
-                    <h4 id="title"></h4>
-                    <div id="body"></div>
+                    <ul class="list-group">
+                        <li class="list-group-item name"></li>
+                        <li class="list-group-item price"></li>
+                        <li class="list-group-item quantity"></li>
+                        <li class="list-group-item description"></li>
+                    </ul>
                 </div>
             </div>
             <div class="modal-footer justify-content-right">
@@ -157,15 +161,14 @@
 
             $('body').on('click', '#showItem', function () {
                 var item_id = $(this).data('id');
-                $.get("{{ route('items.index') }}" +'/' + item_id +'/show', function (data) {
+                $.get("{{ route('items.index') }}" +'/' + item_id, function (data) {
                     $('#modal-lg').modal('show');
-                    $('#modal-title').html("Detail barang");
+                    $('#modal-title').html("Detail Barang");
                     $('#item_id').val(data.id);
-                    $('#name').html(data.name);
-                    $('#price').html(data.price);
-                    $('#quantity').html(data.quantity);
-                    $('#description').html(data.description);
-                    // $('#body').html(data.body);
+                    $('.name').html('Nama : ' + data.name);
+                    $('.price').html('Harga : ' + data.price);
+                    $('.quantity').html('Kuantitas : ' + data.quantity);
+                    $('.description').html('Deskripsi : ' + data.description);
                 })
            });
 

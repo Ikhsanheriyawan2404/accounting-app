@@ -26,7 +26,7 @@ class ItemController extends Controller
                            $btn =
 
                            '<div class="d-flex justify-content-between">
-                            <a href="'.route('items.show', $row->id).'" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                            <a href="javascript:void(0)" data-id="'.$row->id.'" id="showItem" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
 
 
                            <a href=" ' . route('items.edit', $row->id) . '" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>

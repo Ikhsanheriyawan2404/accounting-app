@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
-use Diglactic\Breadcrumbs\Breadcrumbs;
-use GuzzleHttp\Middleware;
-use Illuminate\Support\Facades\Hash;
-use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class ItemController extends Controller
 {
@@ -17,12 +15,42 @@ class ItemController extends Controller
         $this->middleware('permission:item-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:item-delete', ['only' => ['destroy']]);
     }
-    public function index()
+    public function index(Request $request)
     {
-        return view('items.index', [
-            'title' => 'Data Barang',
-            'items' => Item::all(),
+        if ($request->ajax()) {
+            $items = Item::get();
+            return DataTables::of($items)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+
+                           $btn =
+
+                           '<div class="d-flex justify-content-between">
+                            <a href="'.route('items.show', $row->id).'" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+
+
+                           <a href=" ' . route('items.edit', $row->id) . '" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>
+
+
+                           <form action=" ' . route('items.destroy', $row->id) . '" method="POST">
+                               <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm(\'Apakah yakin ingin menghapus ini?\')"><i class="fas fa-trash"></i></button>
+                            ' . csrf_field() . '
+                            ' . method_field('DELETE') . '
+                           </form>
+                       </div>';
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        return view('items.index',[
+            'title' => 'Data Barang'
         ]);
+    }
+
+    public function show(Item $item)
+    {
+        return response()->json($item);
     }
 
     public function create()

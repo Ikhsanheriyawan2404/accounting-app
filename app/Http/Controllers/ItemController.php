@@ -22,10 +22,9 @@ class ItemController extends Controller
             return DataTables::of($items)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
+                        $btn =
+                        '<div class="d-flex justify-content-between">
 
-                           $btn =
-
-                           '<div class="d-flex justify-content-between">
                             <a href="javascript:void(0)" data-id="'.$row->id.'" id="showItem" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
 
 
@@ -37,8 +36,9 @@ class ItemController extends Controller
                             ' . csrf_field() . '
                             ' . method_field('DELETE') . '
                            </form>
-                       </div>';
-                            return $btn;
+                        </div>';
+
+                        return $btn;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
@@ -109,5 +109,12 @@ class ItemController extends Controller
         $item->delete();
         toast('Data barang berhasil dihapus!','success');
         return back();
+    }
+
+    public function ()
+    {
+        $item->delete();
+        toast('');
+        return back()
     }
 }

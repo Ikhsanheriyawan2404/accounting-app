@@ -36,7 +36,12 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
+        });
+        $this->renderable(function (\Spatie\Permission\Exceptions\UnauthorizedException $e, $request) {
+            return response()->json([
+                'responseMessage' => 'Kamu tidak punya izin untuk mengakses ini.',
+                'responseStatus'  => 403,
+            ]);
         });
     }
 

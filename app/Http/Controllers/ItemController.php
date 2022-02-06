@@ -113,8 +113,6 @@ class ItemController extends Controller
 
     public function ()
     {
-        $item->delete();
-        toast('');
         return back()
     }
 }
